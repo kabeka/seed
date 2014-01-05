@@ -107,8 +107,8 @@ EOF
 cat >>boot.sh <<EOF
 export LD_LIBRARY_PATH=/app/A/usr/lib
 export PATH=$PATH:/app/Copy:/app/Tran
-touch /app/.copy/status.txt
-exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/ -daemon
+#touch /app/.copy/status.txt
+#exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/ -daemon
 exec /app/Trans/transmission-daemon --foreground --port=\$PORT --username=hashwaltz --password=123456
 #exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port=\$PORT --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456 
 EOF
