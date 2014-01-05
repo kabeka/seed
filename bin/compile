@@ -115,6 +115,16 @@ exec /app/Trans/transmission-daemon --foreground --port=\$PORT --username=hashwa
 EOF
 
 
+cat >>seed.sh <<EOF
+export LD_LIBRARY_PATH=/app/A/usr/lib
+export PATH=$PATH:/app/Copy:/app/Tran
+mkdir /app/.copy
+touch /app/.copy/status.txt
+exec /app/Trans/transmissioncli --finish '/app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/' 'magnet:?xt=urn:btih:6b9ce268e156dc24b58c216f5b74e012ae47ce83&dn=Performers+Of+The+Year+2014+%28Elegant+Angel%29+XXX+NEW+%28Split+Scene&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+#exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/ -daemon
+EOF
+
+
 #export PATH=$PATH:/app/Copy:/app/Tran
 #for i in {1...1000}
 #do
