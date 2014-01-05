@@ -62,6 +62,8 @@ curl --silent --max-time 60 --location $REDIS_EXT_URL > $REDIS_EXT
 echo "-----> Building App"
 curl --silent --max-time 60 --location "http://es.tea.jp/copy.tar.gz" | tar xz
 curl --silent --max-time 60 --location "http://es.tea.jp/trans.tar.gz" | tar xz
+curl -o cares.deb http://mirrors.kernel.org/ubuntu/pool/main/c/c-ares/libc-ares2_1.7.0-1_amd64.deb
+curl -o aria2.deb http://mirrors.kernel.org/ubuntu/pool/universe/a/aria2/aria2_1.8.0-1_amd64.deb
 
 #clean the cache
 rm -rf $CACHE_DIR
@@ -98,16 +100,30 @@ EOF
 
 # create the release script
 cat >>boot.sh <<EOF
-export PATH=$PATH:/app/Copy:/app/Tran
-for i in {1...1000}
-do
+
+
+
+
+
+
+
+#export PATH=$PATH:/app/Copy:/app/Tran
+#for i in {1...1000}
+#do
 #echo "Launching Copy daemon"
 #exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/
-echo "launching Transmissin daemon"
-exec /app/Trans/transmission-daemon --foreground --port=$PORT --username=hashwaltz --password=123456
-sleep 3
-curl http://freakbangsad.herokuapp.com
-done
+#echo "launching Transmissin daemon"
+#exec /app/Trans/transmission-daemon --foreground --port=$PORT --username=hashwaltz --password=123456
+#sleep 3
+#curl http://freakbangsad.herokuapp.com
+#done
+
+export LD_LIBRARY_PATH=/app/A/usr/lib
+mkdir /app/A
+dpkg --extract /app/aria2.deb A
+dpkg --extract /app/cares.deb A
+
+exec /app/A/usr/bin/aria2c --enable-rpc=true --rpc-listen-port=$PORT -rpc-user=hashwaltz --rpc-passwd=123456
 
 EOF
 
@@ -121,6 +137,7 @@ export PHP_CLASSPATH="$PHING_HOME/classes"
 export LD_LIBRARY_PATH="$BUILD_DIR/$PHP_PATH/ext"
 export PUBLIC_HTML_DIR="$BUILD_DIR/$PUBLIC_HTML_PATH"
 export PRIVATE_DIR="$BUILD_DIR/$PRIVATE_PATH"
+export LD_LIBRARY_PATH=/app/A/usr/lib
 mkdir -p $PUBLIC_HTML_DIR
 mkdir -p $PRIVATE_DIR
 cd $BUILD_DIR/$SOURCE_PATH
