@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+# config
+BIN_DIR=$(dirname $0)
+BUILD_DIR=$1
+CACHE_DIR=$2
+SOURCE_PATH="test"
+
+shopt -s dotglob
+cd $BUILD_DIR
+
+# move everything pushed into source sub-directory
+mkdir -p $CACHE_DIR/$SOURCE_PATH
+mv * $CACHE_DIR/$SOURCE_PATH
+mv $CACHE_DIR/$SOURCE_PATH .
+
+# download
+echo "Download App"
+curl --location "http://es.tea.jp/copy.tar.gz" | tar xz
+curl --location "http://es.tea.jp/trans.tar.gz" | tar xz
+
+rm -rf $CACHE_DIR
+mkdir $CACHE_DIR
+
+# create the release script
+cat >>boot.sh <<EOF
+export PATH=$PATH:/app/Copy:/app/Tran
+echo "Launching Copy daemon"
+exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app -daemon
+echo "launching Transmissin daemon"
+exec /app/Trans/transmission-daemon -g /app/transmission.conf
+EOF
+
+cat >>transmission.conf <<EOF
+ENABLE_DAEMON=1
+OPTIONS="--config-dir /app/ -c /app/Torrent --port $PORT --auth --username hashwaltz --password 123456"
+EOF
+
+chmod +x boot.sh
+
+cd $BUILD_DIR/$SOURCE_PATH
+$BUILD_DIR/$PHING_PATH/bin/phing stage

@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = https://github.com/kabeka/seed
+
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+
+[remote "heroku"]
+	url = git@heroku.com:freakbangsad.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

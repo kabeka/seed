@@ -1,0 +1,7 @@
+=== freakbangsat Config Vars ===
+BUILDPACK_URL:    https://github.com/ryanbrainard/heroku-buildpack-phing
+GEM_PATH:         vendor/bundle/ruby/1.9.1
+LANG:             en_US.UTF-8
+PATH:             bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin
+PRIVATE_HTML_DIR: /app/target
+PUBLIC_HTML_DIR:  /app/src

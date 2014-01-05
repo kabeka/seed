@@ -1,0 +1,7 @@
+<project name="Sample Seed Build" default="www">
+    <target name="stage">
+        <copy todir="${env.HOME}">
+            <fileset dir="test"/>
+        </copy>
+    </target>
+</project>

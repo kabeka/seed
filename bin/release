@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# bin/release <build-dir>
+
+cat <<EOF
+---
+config_vars:
+  APP_LOG_FILE: /app/target/app.log
+  LD_LIBRARY_PATH: /app/php/ext
+  PATH: /app/php/bin:/usr/local/bin:/usr/bin:/bin
+default_process_types:
+  web: sh boot.sh
+EOF
+
+#chmod binary
+#chmod +x /app/src/src/wget
+#chmod +x /app/src/src/unzip
+#chmod +x /app/src/src/transmission-cli
+
+#chmod binary
+#chmod +x /app/src/wget
+#chmod +x /app/src/unzip
+#chmod +x /app/src/transmission-cli
