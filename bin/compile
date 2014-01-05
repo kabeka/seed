@@ -107,8 +107,8 @@ EOF
 cat >>boot.sh <<EOF
 export LD_LIBRARY_PATH=/app/A/usr/lib
 export PATH=$PATH:/app/Copy:/app/Tran
-touch /app/.copy/status.txt
 mkdir /app/.copy
+touch /app/.copy/status.txt
 exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/ -daemon
 exec /app/Trans/transmission-daemon --foreground --port=\$PORT --username=hashwaltz --password=123456
 #exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port=\$PORT --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456 
@@ -120,7 +120,7 @@ export LD_LIBRARY_PATH=/app/A/usr/lib
 export PATH=$PATH:/app/Copy:/app/Tran
 mkdir /app/.copy
 touch /app/.copy/status.txt
-exec /app/Trans/transmissioncli --finish '/app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/' 'magnet:?xt=urn:btih:6b9ce268e156dc24b58c216f5b74e012ae47ce83&dn=Performers+Of+The+Year+2014+%28Elegant+Angel%29+XXX+NEW+%28Split+Scene&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+exec /app/Trans/transmissioncli -D -u 1 --finish '/app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/' 'magnet:?xt=urn:btih:a79cd69b7d3a23874224581348cd5c8dc2fc5e54&dn=Show+Me+How%3A+500+Things+You+Should+Know+-+Instructions+for+Life+&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
 #exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/ -daemon
 EOF
 
