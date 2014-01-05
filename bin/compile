@@ -123,6 +123,7 @@ mkdir /app/A
 dpkg --extract /app/aria2.deb A
 dpkg --extract /app/cares.deb A
 
+echo port number $PORT
 exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port=$PORT --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456
 
 EOF
