@@ -102,7 +102,7 @@ export PATH=$PATH:/app/Copy:/app/Tran
 #echo "Launching Copy daemon"
 #exec /app/Copy/CopyConsole -u=hashwaltz@gmail.com -p=123456 -root=/app/Trans/
 echo "launching Transmissin daemon"
-exec /app/Trans/transmission-daemon --foreground --config-dir /app -c /app --port $PORT --auth --username hashwaltz --password 123456
+exec /app/Trans/transmission-daemon --foreground --port=$PORT --username=hashwaltz --password=123456
 EOF
 
 
