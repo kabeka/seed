@@ -106,7 +106,7 @@ EOF
 # create the release script
 cat >>boot.sh <<EOF
 export LD_LIBRARY_PATH=/app/A/usr/lib
-web = 'exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port=$PORT --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456 -DNO_DETACH' 
+web = 'exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port='$PORT' --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456 -DNO_DETACH' 
 EOF
 
 
