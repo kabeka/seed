@@ -117,7 +117,7 @@ cat >>boot.sh <<EOF
 #curl http://freakbangsad.herokuapp.com
 #done
 #echo port number $PORT
-
+export LD_LIBRARY_PATH=/app/A/usr/lib
 exec /app/A/usr/bin/aria2c --enable-xml-rpc=true --xml-rpc-listen-all=true --xml-rpc-listen-port=$PORT --xml-rpc-user=hashwaltz --xml-rpc-passwd=123456
 
 EOF
